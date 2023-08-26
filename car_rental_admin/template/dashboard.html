@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Admin - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <style>
+
+.cards {
+    width: 100%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.li_active{
+    background-color: #ffe599;
+}
+.gradient {
+    background: linear-gradient(90deg, rgba(67,155,255,1) 35%, rgba(107,176,255,1) 100%)
+}
+
+.gradient2 {
+    background: linear-gradient(90deg, rgba(62,219,188,1) 35%, rgba(107,219,196,1) 100%)
+}
+
+.gradient3 {
+    background: linear-gradient(90deg, rgba(255,188,92,1) 35%, rgba(255,202,124,1) 100%)
+}
+
+.gradient4 {
+    background: linear-gradient(90deg, rgba(255,86,114,1) 35%, rgba(255,131,152,1) 100%)
+}
+        </style>
+</head>
+<body>
+    <div class="bg-blue-500 w-full p-2 h-12 flex items-center" style="background: linear-gradient(to bottom,#ffbf00 0,rgba(255,191,0,.8) 50%,#ffbf00 100%);"    >
+        <div>
+            <p class="pl-10 text-white font-semibold text-xl" >Admin Dashboard</p>
+        </div>
+        <div class="ml-auto flex">
+            <p class="pr-2 text-white font-semibold">Admin</p>
+            <img
+                onclick="logout()"
+                class="pr-4 cursor-pointer"
+                src="https://img.icons8.com/ios-glyphs/25/FFFFFF/logout-rounded-left.png" />
+        </div>
+    </div>
+    <div class="flex overflow-hidden">
+        <div class="w-[13%]" style="height: calc(100vh - 3rem)">
+            <ul class="space-y-3 h-full bg-white">
+                <li onclick="showTab()" id="link1" class="px-4 pt-4 pb-2 flex items-center hover:bg-gray-300 cursor-pointer">
+                    <a class="flex items-center" >
+                        <img
+                            src="https://img.icons8.com/material-sharp/25/707070/home-page.png" />
+                        <span class="text-md font-semibold text-gray-700 pl-2">Dashboard</span>
+                    </a>
+                </li>
+                <li onclick="showTab1()" id="link2"  class="px-4 py-2 flex items-center hover:bg-gray-300 cursor-pointer">
+                    <a class="flex items-center" >
+                        <img src="https://img.icons8.com/ios-glyphs/25/707070/car-service.png"/>
+                        
+                        <span class="text-md font-semibold text-gray-700 pl-2">Car Catergory</span>
+                    </a>
+                </li>
+                <li onclick="showTab2()" id="link3" class="px-4 py-2 flex items-center hover:bg-gray-300 cursor-pointer">
+                    <a class="flex items-center" >
+                        <img src="https://img.icons8.com/glyph-neue/25/707070/car.png"/>
+                        <span class="text-md font-semibold text-gray-700 pl-2">CARS</span>
+                    </a>
+                </li>
+                <li onclick="showTab3()" id="link4" class="px-4 py-2 flex items-center hover:bg-gray-300 cursor-pointer">
+                    <a class="flex items-center" >
+                        <img src="https://img.icons8.com/ios-filled/25/707070/banknotes.png"/>
+                        <span class="text-md font-semibold text-gray-700 pl-2">Fair</span>
+                    </a>
+                </li>
+               
+            </ul>
+        </div>
+            <div id="card1" class="bg-slate-200 w-[83.5em]" style="height: calc(100vh - 3rem);display: block;">
+                <div class="p-2">
+                    <div class="px-3 py-2 cards">
+            
+                        <asp:DataList runat="server" ID="totalUsers">
+                            <ItemTemplate>
+                                <div class="rounded-md shadow-lg gradient">
+                                    <div class="text-center text-white">
+                                        <p class="p-3 font-semibold text-2xl">Total drivers</p>
+                                        <p class="p-3 font-light text-xl">{{driver_count}}</p>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:DataList>
+            
+                        <div class="gradient2 rounded-md shadow-lg">
+                            <div class="text-center text-white">
+                                <p class="p-3 font-semibold text-2xl">Total Catergory</p>
+                                <p class="p-3 font-light text-xl">{{cat_count}}</p>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <div class="px-3 py-2">
+                        <div class="mt-4 bg-white rounded-md shadow-lg p-2">
+                            <div class="w-full flex justify-between">
+                                <p class="text-gray-600 font-bold text-md p-3">
+                                    Driver Details
+                                </p>
+                                    <a href="/drivercreate" class="py-1 cursor-pointer px-2  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Add Driver</a>
+                            </div>
+            
+                            <div class="w-full mt-2 p-3">
+                                <div class="overflow-y-auto" style="height: calc(100vh - 20rem)">
+                                        <HeaderTemplate>
+                                            <table class="text-center p-4 bg-white shadow-md w-full">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Id</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">User Name</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Email Id</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Mobile</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Gender</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            {% for i  in drivers %}
+                                            <tr class="text-gray-700">
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.0}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.1}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.2}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.4}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.3}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5 flex justify-evenly">
+                                                    <div class="flex justify-between">
+                                                        <a href="/driver/edit/{{i.0}}">
+                                                            <img class="cursor-pointer mr-2" src="https://img.icons8.com/fluency-systems-filled/25/00FF00/edit.png"/>
+                                                        </a>
+                                                        <a href="/driver/delete/{{i.0}}">
+                                                            <img class="cursor-pointer"  src="https://img.icons8.com/ios-glyphs/25/FF0000/delete.png" />
+                                                        </a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            </tbody>
+                                            </table>
+                                        </FooterTemplate>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="card2" class="bg-slate-200 w-[83.5em]" style="height: calc(100vh - 3rem);display: none;">
+                <div class="p-2">
+                 
+                    <div class="px-3 py-2">
+                        <div class="mt-4 bg-white rounded-md shadow-lg p-2">
+                            <div class="w-full flex justify-between">
+                                <p class="text-gray-600 font-bold text-md p-3">
+                                    car category Details
+                                </p>
+                                    <a href="/catcreate" class="py-1 cursor-pointer px-2  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Add Category</a>
+                            </div>
+            
+                            <div class="w-full mt-2 p-3">
+                                <div class="overflow-y-auto" style="height: calc(100vh - 20rem)">
+                                        <HeaderTemplate>
+                                            <table class="text-center p-4 bg-white shadow-md w-full">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Id</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Name</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            {% for i  in car_catergory %}
+                                            <tr class="text-gray-700">
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.0}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.1}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5 flex justify-evenly">
+                                                    <div class="flex justify-between">
+                                                        <a href="/catergory/edit/{{i.0}}">
+                                                            <img class="cursor-pointer mr-2" src="https://img.icons8.com/fluency-systems-filled/25/00FF00/edit.png"/>
+                                                        </a>
+                                                        <a href="/catergory/delete/{{i.0}}">
+                                                            <img class="cursor-pointer"  src="https://img.icons8.com/ios-glyphs/25/FF0000/delete.png" />
+                                                        </a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            </tbody>
+                                            </table>
+                                        </FooterTemplate>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="card3" class="bg-slate-200 w-[83.5em]" style="height: calc(100vh - 3rem);display: none;">
+                <div class="p-2">
+                 
+                    <div class="px-3 py-2">
+                        <div class="mt-4 bg-white rounded-md shadow-lg p-2">
+                            <div class="w-full flex justify-between">
+                                <p class="text-gray-600 font-bold text-md p-3">
+                                    car  Details
+                                </p>
+                                    <a href="/carcreate" class="py-1 cursor-pointer px-2  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Add Cars</a>
+                            </div>
+            
+                            <div class="w-full mt-2 p-3">
+                                <div class="overflow-y-auto" style="height: calc(100vh - 20rem)">
+                                        <HeaderTemplate>
+                                            <table class="text-center p-4 bg-white shadow-md w-full">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Id</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Name</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">driver</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">vehicle No</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">allocated status</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">category</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Car Image</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            {% for i  in car %}
+                                            <tr class="text-gray-700">
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.0}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.1}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.2}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.3}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.4}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.5}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.6}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5 flex justify-evenly">
+                                                    <div class="flex justify-between">
+                                                        <a href="/car/edit/{{i.0}}">
+                                                            <img class="cursor-pointer mr-2" src="https://img.icons8.com/fluency-systems-filled/25/00FF00/edit.png"/>
+                                                        </a>
+                                                        <a href="/car/delete/{{i.0}}">
+                                                            <img class="cursor-pointer"  src="https://img.icons8.com/ios-glyphs/25/FF0000/delete.png" />
+                                                        </a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            </tbody>
+                                            </table>
+                                        </FooterTemplate>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="card4" class="bg-slate-200 w-[83.5em]" style="height: calc(100vh - 3rem);display: none;">
+                <div class="p-2">
+                 
+                    <div class="px-3 py-2">
+                        <div class="mt-4 bg-white rounded-md shadow-lg p-2">
+                            <div class="w-full flex justify-between">
+                                <p class="text-gray-600 font-bold text-md p-3">
+                                    fair  Details
+                                </p>
+                                    <a href="/faircreate" class="py-1 cursor-pointer px-2  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">Add fair</a>
+                            </div>
+            
+                            <div class="w-full mt-2 p-3">
+                                <div class="overflow-y-auto" style="height: calc(100vh - 20rem)">
+                                        <HeaderTemplate>
+                                            <table class="text-center p-4 bg-white shadow-md w-full">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Id</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">cat_type</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">per_km</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">basic_charge</th>
+                                                        <th class="border p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            {% for i  in fair_data %}
+                                            <tr class="text-gray-700">
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.0}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.1}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.2}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5">
+                                                    {{i.3}}
+                                                </td>
+                                                <td class="border px-4 py-1 dark:border-dark-5 flex justify-evenly">
+                                                    <div class="flex justify-between">
+                                                        <a href="/fair/edit/{{i.0}}">
+                                                            <img class="cursor-pointer mr-2" src="https://img.icons8.com/fluency-systems-filled/25/00FF00/edit.png"/>
+                                                        </a>
+                                                        <a href="/fair/delete/{{i.0}}">
+                                                            <img class="cursor-pointer"  src="https://img.icons8.com/ios-glyphs/25/FF0000/delete.png" />
+                                                        </a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            </tbody>
+                                            </table>
+                                        </FooterTemplate>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script type="text/javascript">
+        function logout() {
+            alert('logout');
+            window.location.href = "/logout";
+        }
+
+        function showTab() {
+          if ($('#card1').css('display') == 'none') {
+            $("#card1").css("display", 'block');
+            $("#link1").addClass("li_active");
+            $("#card2").css("display", 'none');
+            $("#link2").removeClass("li_active");
+            $("#card3").css("display", 'none');
+            $("#link3").removeClass("li_active");
+            $("#card4").css("display", 'none');
+            $("#link4").removeClass("li_active");
+           
+          }
+          
+        }
+
+        function showTab1() {
+          
+          if ($('#card2').css('display') == 'none') {
+            $("#link2").addClass("li_active");
+            $("#card2").css("display", 'block');
+            $("#card1").css("display", 'none');
+            $("#link1").removeClass("li_active");
+            $("#card3").css("display", 'none');
+            $("#link3").removeClass("li_active");
+            $("#card4").css("display", 'none');
+            $("#link4").removeClass("li_active");
+           
+    }
+
+}
+        function showTab2() {
+          
+          if ($('#card3').css('display') == 'none') {
+            $("#link3").addClass("li_active");
+            $("#card3").css("display", 'block');
+            $("#card1").css("display", 'none');
+            $("#link1").removeClass("li_active");
+            $("#card2").css("display", 'none');
+            $("#link2").removeClass("li_active");
+            $("#card4").css("display", 'none');
+            $("#link4").removeClass("li_active");
+           
+    }
+
+}
+
+        function showTab3() {
+          
+          if ($('#card4').css('display') == 'none') {
+            $("#link4").addClass("li_active");
+            $("#card4").css("display", 'block');
+            $("#card1").css("display", 'none');
+            $("#link1").removeClass("li_active");
+            $("#card2").css("display", 'none');
+            $("#link2").removeClass("li_active");
+            $("#card3").css("display", 'none');
+            $("#link3").removeClass("li_active");
+           
+    }
+
+}
+    </script>
+</body>
+</html>
