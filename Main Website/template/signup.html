@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="login_main">
+      <div class="outer_div">
+        <p
+          style="
+            margin: 10px 0px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            color: #777;
+          "
+        >
+         Sign In
+        </p>
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="inner_div">
+  
+              <div
+            style="    display: flex; align-items: center; justify-content: center"
+          >
+            <div style="border: 1px solid #e3e2e2; padding: 4px">
+              <img src="https://img.icons8.com/ios-glyphs/24/ffbf00/user--v1.png"/>
+            </div>
+            <input
+              type="text"
+              class="input_fields"
+              required
+              placeholder="Enter username"
+              name="username"
+              id=""
+            />
+          </div>
+            <div
+              style=" margin-top: 10px;display: flex; align-items: center; justify-content: center"
+            >
+              <div style="border: 1px solid #e3e2e2; padding: 4px">
+                <img
+                  src="https://img.icons8.com/ios-glyphs/24/ffbf00/new-post.png"
+                />
+              </div>
+              <input
+                type="email"
+                class="input_fields"
+                required
+                placeholder="Enter Email ID"
+                name="email"
+                id=""
+              />
+          </div>
+          
+            <div
+              style="
+                display: flex;
+                margin-top: 10px;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <div style="border: 1px solid #e3e2e2; padding: 4px">
+                <img
+                  src="https://img.icons8.com/ios-filled/24/ffbf00/password.png"
+                />
+              </div>
+              <input
+                type="password"
+                class="input_fields"
+                required
+                placeholder="Enter Password"
+                name="password"
+                id=""
+              />
+            </div>
+            <button type="submit" class="hero-btn">Sign In</button>
+            <p style="text-align: center;margin-top: 20px;color: #777;">Already Have a Account ? <span><a href="/" style="color:#ffbf00">Login In </a></span></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container1">
+      <nav class="navbar">
+        <div class="sec_nav">
+          <p>Contact:9922036801</p>
+          <p style="margin-left: 8px">Email: xyz@carrental.com</p>
+        </div>
+        <div class="pri_nav">
+          <div class="inner_pri_nav">
+            {% load static %}
+            <img src="{% static 'img/logo3.png' %}" alt="" />
+            <ul class="nav_list">
+              <li class="list_items"><a href="/">Home</a></li>
+              <li class="list_items">About</li>
+              <li class="list_items">Contact</li>
+              <li class="list_items">Post Complaint</li>
+              <li class="list_items">Booking History</li>
+              <li class="list_items" style="padding-right: 0px">
+                <a href="vehicle">View Cars</a>
+              </li>
+              <li class="list_items" style="padding-right: 0px">
+                <button
+                  onclick="location.href='{% url 'logout' %}'"
+                  class="hero-btn"
+                  style="margin-top: 0px"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="container1">
+      <p class="text-2xl font-bold">Payable Amount : {{fair_price}} Rs</p>
+      <form action="/doneBooking/{{car_id}}" method="post">
+          {% csrf_token %}
+        <div class="max-w-full px-4 py-2">
+          <div class="mt-2">
+            <p class="text-lg font-bold text-gray-600 pb-2">Name On Card:</p>
+            <input
+              type="text"
+              id="ContentPlaceHolder1_name_on_debit_card"
+              placeholder="enter card name"
+              required
+              class="w-full outline-none border-t-0 border-l-0 border-r-0 border-b-2 border-green-400 focus:border-t-0 focus:border-l-0 focus:border-r-0 focus:border-green-400"
+            />
+            <span id="ContentPlaceHolder1_RequiredFieldValidator20"
+              >Please Enter Your Card Name</span
+            >
+          </div>
+          <div class="mt-2">
+            <p class="text-lg font-bold text-gray-600 pb-2">Card Number:</p>
+            <input
+              maxlength="16"
+              type="text"
+              minlength="16"
+              placeholder="xxxx xxxx 1234"
+              required
+              class="w-full outline-none border-t-0 border-l-0 border-r-0 border-b-2 border-green-400 focus:border-t-0 focus:border-l-0 focus:border-r-0 focus:border-green-400"
+            />
+            <span id="ContentPlaceHolder1_RequiredFieldValidator1"
+              >Please Enter Your Card Number</span
+            >
+          </div>
+          <div class="mt-2">
+            <p class="text-lg font-bold text-gray-600 pb-2">Expiry Month:</p>
+            <select
+              class="w-full border-b-2 border-t-0 border-l-0 border-r-0 border-green-400 mb-4"
+            >
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <p class="text-lg font-bold text-gray-600 pb-2">Expiry Year:</p>
+            <select
+              class="w-full border-b-2 border-t-0 border-l-0 border-r-0 border-green-400 mb-4"
+            >
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+              <option value="2031">2031</option>
+              <option value="2032">2032</option>
+              <option value="2033">2033</option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <p class="text-lg font-bold text-gray-600 pb-2">CVV:</p>
+            <input
+              maxlength="3"
+              type="password"
+              minlength="3"
+              placeholder="123"
+              required
+              class="w-full outline-none border-t-0 border-l-0 border-r-0 border-b-2 border-green-400 focus:border-t-0 focus:border-l-0 focus:border-r-0 focus:border-green-400"
+            />
+            <span id="ContentPlaceHolder1_RequiredFieldValidator2"
+              >Please Enter Your CVV number</span
+            >
+          </div>
+          <div class="mt-2">
+            <input
+              type="submit"
+              value="Confirm Payment"
+              class="p-2 bg-green-500 w-full rounded-md shadow-lg text-white mb-2"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
