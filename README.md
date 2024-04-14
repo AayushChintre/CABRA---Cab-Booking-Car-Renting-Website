@@ -1,6 +1,3 @@
-**CABRA---Cab-Booking-Car-Renting-Website**
-
-
 Presenting the groundbreaking project, "CABRA (Online Cab Booking & Car Rental Website)," a pioneering solution that revolutionizes the way we book cabs and rent cars. In an era where efficient transportation is no longer a luxury but a necessity, this online portal provides an avenue for hassle-free and seamless access to travel services. Recognizing the fundamental role of transportation in today's world, this innovative platform caters to the pressing need for accessible and convenient travel solutions.
 
 In this dynamic environment, where individuals are constantly on the move, the significance of streamlined transportation solutions cannot be understated. CABRA addresses this need by offering users the ability to effortlessly choose destinations and secure cab rides or rental cars through an intuitive online interface. Whether it's a business trip or a leisurely journey, the platform empowers users to make informed decisions and embark on their travel plans with ease.
