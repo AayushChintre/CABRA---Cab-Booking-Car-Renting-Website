@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+<html>
+  <head runat="server">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Admin - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <style>
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article,
+      aside,
+      details,
+      figcaption,
+      figure,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      section {
+        display: block;
+      }
+
+      * {
+        font-family: "Lato", sans-serif !important;
+      }
+      body {
+        line-height: 1;
+      }
+      ol,
+      ul {
+        list-style: none;
+      }
+      blockquote,
+      q {
+        quotes: none;
+      }
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: "";
+        content: none;
+      }
+
+      select {
+        outline: none;
+      }
+
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      /* Navbar */
+
+      .navbar {
+        width: 100%;
+      }
+
+      .sec_nav {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 0px;
+      }
+
+      .sec_nav p {
+        font-size: 17px;
+        color: #716d6e;
+        font-weight: bold;
+      }
+
+      .container {
+        max-width: 1140px;
+        margin: auto;
+        width: 100%;
+      }
+
+      .pri_nav {
+        width: 100%;
+        padding: 20px 0px;
+      }
+      .inner_pri_nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .inner_pri_nav img {
+        width: 300px;
+        height: 57px;
+      }
+
+      .nav_list {
+        display: flex;
+        align-items: center;
+      }
+
+      .list_items {
+        padding: 0px 22px;
+        color: #555;
+        font-weight: bold;
+      }
+
+      .hero-banner {
+        width: 100%;
+        position: relative;
+        padding: 70px 0px;
+        background: linear-gradient(to bottom, #ffbf00 0, rgba(255, 191, 0, 0.8) 50%, #ffbf00 100%);
+      }
+
+      .hero-banner::before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: #ffbf00;
+        bottom: -24px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+      }
+
+      .banner_left {
+        background-color: white;
+        width: 42%;
+        padding: 45px 35px 50px;
+        box-shadow: 0 9px 0 0 #fff, 0 -9px 0 0 #fff, 7px 0 15px -4px rgb(0 0 0 / 30%), -7px 0 15px -4px rgb(0 0 0 / 30%);
+      }
+
+      .ban_select {
+        padding: 9px 10px;
+        margin-bottom: 1.4375rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #565656;
+        border: 2px solid #efe9e9;
+        line-height: normal;
+        width: 100%;
+        background-color: #fff;
+        -webkit-appearance: none;
+        cursor: pointer;
+        background-image: url(https://demo.xpeedstudio.com/carrental/wp-content/themes/carrental/assets/images/dropdown-icon.png);
+        background-repeat: no-repeat;
+        background-position: right 20px center;
+        padding-right: 2.5rem;
+      }
+
+      .input-group {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+      }
+      .input-group-addon {
+        background-color: #efe9e9;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #716d6e;
+        text-align: left;
+        padding: 0.8125rem 0.75rem;
+        height: 100%;
+        width: 30%;
+        display: flex;
+        align-items: center;
+      }
+      .date {
+        flex: 0 0 63%;
+      }
+
+      .datepicker {
+        border-radius: 0;
+        font-size: 16px;
+        padding-left: 15px;
+        box-shadow: none;
+        background: 0 0;
+        margin-top: 0;
+        border: 2px solid #efe9e9;
+        background-color: #fff;
+        color: #ffbf00;
+      }
+
+      .time {
+        flex: 1;
+      }
+
+      .xs--select {
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        height: 100%;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        color: #ffbf00;
+        border: 2px solid #efe9e9;
+        line-height: normal;
+        width: 100%;
+        background-color: #fff;
+        -webkit-appearance: none;
+        padding: 11px 10px;
+        cursor: pointer;
+        background-image: url(https://demo.xpeedstudio.com/carrental/wp-content/themes/carrental/assets/images/dropdown-icon.png);
+        background-repeat: no-repeat;
+        background-position: right 20px center;
+        padding-right: 2.5rem;
+      }
+
+      .hero-btn {
+        background-color: #ffbf00;
+        color: #fff;
+        display: inline-block;
+        font-size: 24px;
+        font-weight: 900;
+        padding: 6px 15px;
+        box-shadow: 6px 6px 0 #efe9e9;
+        transition: 0.2s;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .hero-btn:hover {
+        background-color: #716d6e;
+      }
+
+      .banner_right {
+        width: 48%;
+        margin: 0px 25px;
+      }
+
+      .banner_right h2 {
+        font-size: 36px;
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 1.1em;
+        color: #fff;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .banner_right p {
+        font-size: 24px;
+        margin-top: 15px;
+        font-weight: 400;
+        line-height: 1.1em;
+        color: #716d6e;
+      }
+
+      /* customer service */
+      .cus_service {
+        padding: 115px 0 80px;
+      }
+
+      .inner_cus {
+        display: flex;
+        position: relative;
+        width: 100%;
+        -ms-flex-line-pack: start;
+        align-content: flex-start;
+      }
+
+      .cus_heading {
+        color: #716d6e;
+        margin: 0 0 15px;
+        font-size: 46px;
+        font-weight: 900;
+        line-height: 1.1em;
+      }
+
+      .cus_desc {
+        color: #716d6e;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.4em;
+        margin: 0 0 15px;
+      }
+
+      .divider {
+        width: 136px;
+        height: 4px;
+        background-color: #ffbf00;
+      }
+
+      .cus_box {
+        width: 50%;
+        background-color: #ededed;
+        padding: 30px 20px 55px 30px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: transparent;
+        margin: 10px;
+        border-radius: 0 0 0 0;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+      }
+
+      .box_icon {
+        margin: 0 15px 0 0;
+        height: 43px;
+        transform: rotate(0deg);
+        width: 43px;
+        line-height: 43px;
+        padding: 5px;
+        background-color: #ffbf00;
+      }
+
+      .box-body {
+        position: relative;
+      }
+
+      .box-heading {
+        margin: 5px 0 30px;
+        padding: 0;
+        color: #716d6e;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1.1em;
+      }
+
+      .box-desc {
+        color: #716d6e;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.7em;
+      }
+
+      .vehicle {
+        padding: 100px 0 40px;
+        background-color: white;
+      }
+
+      .car_select {
+        display: flex;
+        margin-top: 35px;
+      }
+
+      .car_options {
+        max-width: 25%;
+        width: 100%;
+        flex: 0 0 25%;
+      }
+
+      .vehicle-nav-container {
+        height: 365px;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 1px;
+      }
+
+      .vehicle_options {
+        background-color: #e3e2e2;
+        margin-bottom: 1px;
+        position: relative;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-right: 10px;
+      }
+
+      .vehicle_options > a {
+        font-size: 18px;
+        color: #716d6e;
+        padding-left: 15px;
+        font-weight: bold;
+        text-decoration: none;
+        display: block;
+        height: 60px;
+        line-height: 60px;
+      }
+
+      .li_active {
+        background-color: #ffe599;
+      }
+
+      .li_active > span {
+        opacity: 1;
+        transition: 0.2s;
+        width: 0.875rem;
+        height: 0.875rem;
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        right: -7px;
+        background-color: #ffe599;
+      }
+
+      .car_view {
+        flex: 0 0 75%;
+        max-width: 75%;
+        width: 100%;
+      }
+
+      .w-66 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+        width: 100%;
+      }
+
+      .vehicle-img {
+        text-align: center;
+      }
+
+      .w-33 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+        width: 100%;
+      }
+
+      .vehicle-price {
+        background-color: rgba(255, 191, 0, 0.4);
+        height: 53px;
+        line-height: 53px;
+        color: #777;
+        padding: 0 10px;
+        font-size: 24px;
+        font-weight: 900;
+      }
+
+      .info {
+        font-weight: 400;
+        font-size: 18px;
+      }
+
+      .mytable {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+      }
+
+      .mytable > tbody > tr:nth-child(odd) {
+        border: 1px solid #e7e7e7;
+      }
+
+      .mytable > tbody > tr > td {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        font-size: 13px;
+        border: 1px solid #ededed;
+      }
+
+      /* footer */
+      .footer {
+        background-color: #dbdbdb;
+        padding: 40px 0 50px;
+      }
+      .inner_footer {
+        padding: 10px;
+      }
+
+      .sec_links {
+        display: flex;
+        justify-content: center;
+      }
+
+      .footer_nav {
+        font-size: 18px;
+        margin: 0px 15px;
+        font-weight: 700;
+        text-transform: capitalize;
+        text-decoration: underline;
+      }
+
+      .footer-text {
+        color: #716d6e;
+        margin: 0 0 2px;
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+        font-weight: 400;
+        line-height: 1.7em;
+      }
+
+      .footer-icons {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .footer-icons > li {
+        display: inline-block;
+        margin: 5px 7px;
+      }
+
+      /* ============
+      Login page
+     ============ */
+
+      .login_main {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(to bottom, #ffbf00 0, rgba(255, 191, 0, 0.8) 50%, #ffbf00 100%);
+        display: grid;
+        place-content: center;
+      }
+
+      .outer_div {
+        width: 400px;
+        height: fit-content;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 9px 0 0 #fff, 0 -9px 0 0 #fff, 7px 0 15px -4px rgb(0 0 0 / 30%), -7px 0 15px -4px rgb(0 0 0 / 30%);
+      }
+
+      .input_fields {
+        width: 100%;
+        padding: 8px;
+        outline: none;
+        font-size: 14px;
+        border: 1px solid #e3e2e2;
+      }
+
+      /* ============
+      vehicle page
+     ============ */
+
+      .vehicle_banner {
+        width: 100%;
+        height: 410px;
+        position: relative;
+        background-image: url(https://demo.xpeedstudio.com/carrental/wp-content/themes/carrental/assets/images/banner/bredcumbs-1.png);
+      }
+
+      .vehicle_overlay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.65);
+      }
+
+      .vehicle_hero > h1 {
+        color: #010103;
+        font-size: 36px;
+        font-weight: 700;
+      }
+
+      .cards {
+        width: 100%;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .gradient {
+        background: linear-gradient(90deg, rgba(67, 155, 255, 1) 35%, rgba(107, 176, 255, 1) 100%);
+      }
+
+      .gradient2 {
+        background: linear-gradient(90deg, rgba(62, 219, 188, 1) 35%, rgba(107, 219, 196, 1) 100%);
+      }
+
+      .gradient3 {
+        background: linear-gradient(90deg, rgba(255, 188, 92, 1) 35%, rgba(255, 202, 124, 1) 100%);
+      }
+
+      .gradient4 {
+        background: linear-gradient(90deg, rgba(255, 86, 114, 1) 35%, rgba(255, 131, 152, 1) 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login_main">
+      <p style="padding: 20px 0px; text-align: center; font-size: 30px; font-weight: bold">Add Car</p>
+      <div class="outer_div">
+        <form action="/car/update/{{car_data.0}}" method="post">
+          {% csrf_token %}
+          <div style="display: flex; align-items: center; justify-content: left">
+            <div style="border: 1px solid #e3e2e2; padding: 4px">
+              <img src="https://img.icons8.com/ios-glyphs/24/ffbf00/user--v1.png" />
+            </div>
+            <input type="text" required class="input_fields" value="{{car_data.1}}" placeholder="Enter Car name" name="carname" id="" />
+          </div>
+          <div style="margin-top: 10px; display: flex; align-items: center; justify-content: left">
+            <select name="driver" value="{{car_data.2}}" id="">
+              <option value="">-- SELECT DRIVER---</option>
+              {% for i in driver_data %}
+              <option value="{{i.0}}">{{i.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div style="margin-top: 10px; display: flex; align-items: center; justify-content: left">
+            <div style="border: 1px solid #e3e2e2; padding: 4px">
+              <img src="https://img.icons8.com/ios-glyphs/24/ffbf00/new-post.png" />
+            </div>
+            <input type="number" required value="{{car_data.3}}" class="input_fields" placeholder="Enter vehicle number" name="carno" id="" />
+          </div>
+          <div style="margin-top: 10px; display: flex; align-items: center; justify-content: left">
+            <select name="allocated_status" value="{{car_data.4}}" id="">
+              <option value="">--Allocation Status--</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div style="margin-top: 10px; display: flex; align-items: center; justify-content: left">
+            <select name="catergoryid" value="{{car_data.5}}" id="">
+              <option value="">--catergory Name--</option>
+              {% for i in cat_data %}
+              <option value="{{i.0}}">{{i.1}}</option>
+              {% endfor %}
+            </select>
+          </div>
+         
+          <div style="margin-top: 10px; display: flex; align-items: center; justify-content: left">
+            <input type="text" required placeholder="Add link of the image" value="{{car_data.6}}" name="cimage" id="">
+           </div>
+          
+
+          <button class="hero-btn">Add car</button>
+          <a href="/dashboard" style="margin-top: 10px;" class="hero-btn">Table</a>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
